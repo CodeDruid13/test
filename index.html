@@ -82,7 +82,9 @@ body {
     ],
                 
             });
-            window.Artplayer = art;
+            art.on('fullscreen', function (args) {
+    alert('The player can play');
+});
         </script>
     </body>
 </html>
