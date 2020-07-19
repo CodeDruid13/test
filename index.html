@@ -1,92 +1,196 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>ArtPlayer</title>
-        <meta charset="UTF-8" />
-        <style>
-        .responsive-iframe {
-    position: relative;
-    padding-bottom: 56.25%; /*16:9*/
-    height: 0;
-    overflow: hidden; 
-}
+ <!DOCTYPE html>
+<html lang="en">
 
-body {
-  margin: 0;
-  background: #000  
-}
-        </style>
-    </head>
-    <body>
-    <div class="responsive-iframe">
-    <div class="artplayer-app" style="position: absolute;
-        top:0;
-        left: 0;
-        width: 100%;
-        height: 100%;">
-</div>
+<head>
+    <meta charset="UTF-8" />
+    <title>THEOplayer 2.X: Getting Started</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Chromecast SDK -->
+    <script type="text/javascript" src="//www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>     
+        <script src="https://kit.fontawesome.com/a7f9895e55.js"></script>
 
-        </div>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/artplayer/dist/artplayer.js"></script>
-        <script>
-            const art = new Artplayer({
-                container: '.artplayer-app',
-    volume: 1,
-                              isLive: false,
-                              muted: false,
-                              autoplay: false,
-                              pip: false,
-                              autoSize: false,
-                              autoMini: false, 
-                              setting: false,
-                              loop: false,
-                              flip: false,
-                               isMobile: true, 
-                              playbackRate: true, 
-                              fullscreen: true,  
-                              miniProgressBar: true, 
-                              networkMonitor: false,
-                                fullscreen: true,
-                                fullscreenToggle: true,
-                                fullscreenWeb: true, 
-                              fullscreenWebToggle:true,
-                              fullscreenRotate: true,  
-                              fullscreenRotateToggle:true,
-                              mutex: true,
-                              light: true,
-                              backdrop: true,
-                              theme: '#ffad00',
-    lang: navigator.language.toLowerCase(),
-    moreVideoAttr: {
-        crossOrigin: 'anonymous',
-    },  
-    icons: { 
-        state: '<img src="https://familymedia.tv/wp-content/uploads/2018/06/family-tv-logo.png">',
-    },
-                whitelist: ['*'],
-    
-    controls: [
-        {
-            position: 'right',
-            html: 'Cast',
-            click: function () {
-                console.info('You clicked on the custom control');
-            },
-        },
-    ],
-    poster: 'https://i.vimeocdn.com/video/878408492_1280x720.jpg?r=pad',
-    url: 'https://player.vimeo.com/external/407712276.sd.mp4?s=9b9371d46145c2ebb46bc494182a734b5a8efa7d&profile_id=139&oauth2_token_id=1303939960',
-    quality: [
-        {
-            default: true,
-            name: 'SD 480P',url: 'https://player.vimeo.com/external/407712276.sd.mp4?s=9b9371d46145c2ebb46bc494182a734b5a8efa7d&profile_id=139&oauth2_token_id=1303939960',
-        },
-        {
-            name: 'HD 720P',url: 'https://player.vimeo.com/external/407712276.sd.mp4?s=9b9371d46145c2ebb46bc494182a734b5a8efa7d&profile_id=139&oauth2_token_id=1303939960',
-        },
-    ],
+    <!-- THEOplayer library and css -->
+    <script type="text/javascript" src="https://cdn.myth.theoplayer.com/52946a59-b86f-486f-b170-c47c14099b99/THEOplayer.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.myth.theoplayer.com/52946a59-b86f-486f-b170-c47c14099b99/ui.css" />
+    <!-- CSS customization style -->
+    <style>
+        /* Customization css style */
+        .theo-primary-color,
+        .vjs-selected {
+            color: #1565c0 !important;
+        }
+
+        .theo-primary-background {
+            color: #000000 !important;
+            background-color: #1565c0 !important;
+        }
+
+        .theo-secondary-color {
+            color: #ffffff !important;
+        }
+
+        .theo-secondary-background {
+            color: #000000 !important;
+            background-color: #ffffff !important;
+        }
+
+        .theo-tertiary-color {
+            color: #000000 !important;
+        }
+
+        .theo-tertiary-background {
+            color: #ffffff !important;
+            background-color: #000000 !important;
+        }
+          .fa-backward {
+                order: -101; /* to the left of the play/pause-button */
+                cursor: pointer;
+            }
+            .fa-forward {
+                order: -100; /* to the right of the play/pause-button */
+                cursor: pointer;
+            }
+    </style>
+</head>
+
+<body>
+
+    <div class="theoplayer-container video-js theoplayer-skin vjs-16-9"></div>
+
+    <script>
+        var element = document.querySelector(".theoplayer-container");
+        var player = new THEOplayer.Player(element, {
+            libraryLocation: "https://cdn.myth.theoplayer.com/52946a59-b86f-486f-b170-c47c14099b99",
+             ui: {
+                    width: "570px",
+                    height: "120px",
+                    fluid: true
+                }
+        });
+
+        // OPTIONAL CONFIGURATION 
+
+        // Customized video player parameters
+            player.src = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4";
+
+            // set your custom resolutions and sources
+            var resolutions = [
+                {name: '1080p HD', src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4'},
+                {name: '720p HD', src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4'},
+                {name: '480p', src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4'},
+                {name: '360p', src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4'}, 
+                {name: '240p', src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4'},
+            ];
                 
-            }); 
-        </script>
-    </body>
+               
+
+            var currentTime, wasPaused;
+            var settingsMenu = player.ui.getChild('ControlBar').getChild('SettingsButton').menu;
+            
+            // Remove built-in quality sub menu
+            settingsMenu.removeMenuItem(settingsMenu.menuItems[0]);
+
+            // Create custom quality sub menu
+            var qualityMenuItem = settingsMenu.addSubMenuItem({
+                index : 0
+            });
+            var qualityMenuTitle = document.createElement('span');
+            qualityMenuTitle.className = 'theo-settings-control-menu-item-title';
+            qualityMenuTitle.innerHTML = 'Quality';
+            var qualityMenuValue = document.createElement('span');
+            qualityMenuValue.className = 'theo-settings-control-menu-item-value';
+            qualityMenuItem.el().appendChild(qualityMenuTitle);
+            qualityMenuItem.el().appendChild(qualityMenuValue);
+            qualityMenuItem.subMenu.menuHeader.el().innerHTML = 'Quality';
+            var qualityItems = resolutions.map(function (resolution) {
+                var qualityItem = qualityMenuItem.subMenu.addMenuItem();
+                qualityItem.el().innerHTML = resolution.name;
+                qualityItem.on('click', function () {
+                    selectQuality(resolution);
+                });
+                return qualityItem;
+            });
+            
+            function selectQuality(resolution) {
+                qualityMenuValue.innerHTML = resolution.name;
+                currentTime = player.currentTime;
+                wasPaused = player.paused;
+                player.src = resolution.src;
+                player.currentTime = currentTime;
+                if (!wasPaused) {
+                    player.play();
+                }
+                var qualityItem = qualityItems[resolutions.indexOf(resolution.name)];
+                qualityItems.forEach(function (item) {
+                    item.selected(item === qualityItem);
+                });
+            }
+
+            // Set default quality to 720p
+            selectQuality(resolutions[1]);
+            
+               var Button = THEOplayer.videojs.getComponent('Button');
+            var RewindButton = THEOplayer.videojs.extend(Button, {
+                constructor: function() {
+                    Button.apply(this, arguments);
+                    /* initialize your button */
+                    // this.el() = created DOM-element
+            
+                    // add tooltip
+                    var tooltipSpan = document.createElement('span');
+                    tooltipSpan.className = 'theo-button-tooltip vjs-hidden';
+                    tooltipSpan.innerText = 'Go back 10 seconds';
+                    function toggleTooltip() {
+                        tooltipSpan.classList.toggle('vjs-hidden');
+                    }
+                    this.el().addEventListener('mouseover', toggleTooltip);
+                    this.el().addEventListener('mouseout', toggleTooltip);
+       
+                    this.el().appendChild(tooltipSpan);
+                },
+                handleClick: () => {
+                    player.currentTime -= 10;
+                },
+                buildCSSClass: function () {
+                    return 'fa fa-backward vjs-button'; // insert all class names here
+                }
+            });
+            THEOplayer.videojs.registerComponent('RewindButton', RewindButton);
+            player.ui.getChild('controlBar').addChild('RewindButton', {});
+            
+            // setting up the forward button by setting up a video-js component
+            var Button = THEOplayer.videojs.getComponent('Button');
+            var ForwardButton = THEOplayer.videojs.extend(Button, {
+                constructor: function() {
+                    Button.apply(this, arguments);
+                    /* initialize your button */
+                    // this.el() = created DOM-element
+            
+                    // add tooltip
+                    var tooltipSpan = document.createElement('span');
+                    tooltipSpan.className = 'theo-button-tooltip vjs-hidden';
+                    tooltipSpan.innerText = 'Go forward 10 seconds';
+                    function toggleTooltip() {
+                        tooltipSpan.classList.toggle('vjs-hidden');
+                    }
+                    this.el().addEventListener('mouseover', toggleTooltip);
+                    this.el().addEventListener('mouseout', toggleTooltip);
+                    this.el().appendChild(tooltipSpan);
+                },
+                handleClick: () => {
+                    player.currentTime += 10;
+                },
+                buildCSSClass: function () {
+                    return 'fa fa-forward vjs-button'; // insert all class names here
+                }
+            });
+            THEOplayer.videojs.registerComponent('ForwardButton', ForwardButton);
+            player.ui.getChild('controlBar').addChild('ForwardButton', {});
+
+        player.preload = 'auto';
+        // Social configuration
+       
+    </script>
+</body>
+
 </html>
