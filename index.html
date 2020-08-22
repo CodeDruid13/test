@@ -51,5 +51,57 @@
          window.player = player;
 
      </script>
+	   
+	   <script>
+//     document.addEventListener("fullscreenChange", function () {
+//       if (fullscreenElement != null) {
+//           console.info("Went full screen");
+//       } else {
+//           console.info("Exited full screen");              
+//       }
+//   });
+document.addEventListener("fullscreenchange", function() {
+console.log('Ass');
+screen.orientation.lock("landscape-primary")
+		.then(function() {
+            
+		})
+		.catch(function(error) {
+			 
+		});
+});
+document.addEventListener("mozfullscreenchange", function() {
+console.log('Ass');
+screen.orientation.lock("landscape-primary")
+		.then(function() {
+            
+		})
+		.catch(function(error) {
+			 
+		});
+});
+document.addEventListener("webkitfullscreenchange", function() {
+console.log('Ass');
+screen.orientation.lock("landscape-primary")
+		.then(function() {
+            
+		})
+		.catch(function(error) {
+			 
+		});
+});
+document.addEventListener("msfullscreenchange", function() {
+console.log('Ass');
+screen.orientation.lock("landscape-primary")
+		.then(function() {
+            
+		})
+		.catch(function(error) {
+			 
+		});
+});
+</script>
+
+
  </body>
  </html>
