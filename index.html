@@ -1,90 +1,68 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>ArtPlayer</title>
-        <meta charset="UTF-8" />
-        <style>
-        .responsive-iframe {
+<head>
+<title>Page Title</title>
+ <style>
+
+                            body,html {
+                              margin: 0px;
+                              background-color: #050205;
+                              overflow:hidden;
+                              height: 100%;
+                              width: 100%;
+                            }
+                            .dplayer {
+  width: 400px;
+}
+ .responsive-iframe {
     position: relative;
     padding-bottom: 56.25%; /*16:9*/
     height: 0;
     overflow: hidden; 
 }
+                          </style>
+</head>
+<body>
 
-body {
-  margin: 0;
-  background: #000  
-}
-        </style>
-    </head>
-    <body>
     <div class="responsive-iframe">
-    <div class="artplayer-app" style="position: absolute;
+    <div class="dplayer" id="player1" style="position: absolute;
         top:0;
         left: 0;
         width: 100%;
         height: 100%;">
 </div>
+ </div>
 
-        </div>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/artplayer/dist/artplayer.js"></script>
-        <script>
-            const art = new Artplayer({
-                container: '.artplayer-app',
+<div class="dplayer" id="player1"></div>
+<script src="https://unpkg.com/dplayer@1.26.0"></script>
+
+<script>
+var dp = new DPlayer({
+    element: document.getElementById('player1'),    
+    autoplay: false,
+    theme: '#FADFA3',   
+    lang: 'en',      
+    preload: 'auto',      
     volume: 1,
-                              isLive: false,
-                              muted: false,
-                              autoplay: false,
-                              pip: false,
-                              autoSize: false,
-                              autoMini: false, 
-                              setting: false,
-                              loop: false,
-                              flip: false,
-                              playbackRate: true, 
-                              fullscreen: true,  
-                              miniProgressBar: true, 
-                              networkMonitor: false,
-                              fullscreenRotate:true,
-                              fullscreenRotateToggle:true,
-                              mutex: true,
-                              light: true,
-                              backdrop: true,
-                              theme: '#ffad00',
-    lang: navigator.language.toLowerCase(),
-    moreVideoAttr: {
-        crossOrigin: 'anonymous',
-    },  
-    icons: { 
-        state: '<img src="https://familymedia.tv/wp-content/uploads/2018/06/family-tv-logo.png">',
-    },
-                whitelist: ['*'],
-    
-    controls: [
-        {
-            position: 'right',
-            html: 'Cast',
-            click: function () {
-                console.info('You clicked on the custom control');
+    mutex: true,video: {
+        quality: [
+            {
+                name: 'HD',
+                url: 'https://player.vimeo.com/external/407712276.sd.mp4?s=9b9371d46145c2ebb46bc494182a734b5a8efa7d&profile_id=165&oauth2_token_id=1303939960',
+                type: 'mp4',
             },
-        },
-    ],
-    poster: 'https://i.vimeocdn.com/video/878408492_1280x720.jpg?r=pad',
-    url: 'https://player.vimeo.com/external/407712276.sd.mp4?s=9b9371d46145c2ebb46bc494182a734b5a8efa7d&profile_id=139&oauth2_token_id=1303939960',
-    quality: [
-        {
-            default: true,
-            name: 'SD 480P',url: 'https://player.vimeo.com/external/407712276.sd.mp4?s=9b9371d46145c2ebb46bc494182a734b5a8efa7d&profile_id=139&oauth2_token_id=1303939960',
-        },
-        {
-            name: 'HD 720P',url: 'https://player.vimeo.com/external/407712276.sd.mp4?s=9b9371d46145c2ebb46bc494182a734b5a8efa7d&profile_id=139&oauth2_token_id=1303939960',
-        },
-    ],
-                
-            });
-            art.on('fullscreen', function (args) {
-    alert('The player can play');
+            {
+                name: 'SD',
+                url: 'https://player.vimeo.com/external/407712276.sd.mp4?s=9b9371d46145c2ebb46bc494182a734b5a8efa7d&profile_id=165&oauth2_token_id=1303939960',
+                type: 'mp4',
+            },
+        ],
+        defaultQuality: 0,
+    }, 
+    
+    
 });
-        </script>
-    </body>
+</script>
+
+</body>
 </html>
